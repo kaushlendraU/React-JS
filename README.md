@@ -21,7 +21,7 @@ Welcome to my React course repository! In this course, I covered various aspects
 6. Project 6: 06reactrouter
 7. 11MegaBlog
 
-  ## MegaBlog is a full stack application. for backend i used appwrite and also learned about html-react-parser, react-hook-form, tinymce
+  ## MegaBlog is a full stack application. For backend i used appwrite and also learned about html-react-parser, react-hook-form, tinymce
 
 
 MegaBlog: 
