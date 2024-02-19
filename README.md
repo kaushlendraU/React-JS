@@ -1,4 +1,4 @@
-# React Course Repository
+# React JS
 
 Welcome to my React course repository! In this course, I covered various aspects of React, including state management, effects, context, Redux, React Router, and more. Throughout the course, I built 11 projects, and one of them is a full-stack website called MegaBlog, featuring a complete authentication process.
 
