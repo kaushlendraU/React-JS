@@ -30,7 +30,7 @@ MegaBlog:
 
 - React
 - State Management
-  - Local State
+  - States
   - Context API
   - Redux
   - Redux Toolkit
