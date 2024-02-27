@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
-import { CartContext } from '../context/CartContext';
+import React from 'react';
+import { useCart } from '../context/CartContext';
 
 
-function Cart(props) {
+function Cart() {
 
-    const cart = useContext(CartContext);
+    const cart = useCart()
+
+    const total = cart.items.reduce((a, b) => a + b.price, 0)
 
     return (
         <>
@@ -18,7 +20,7 @@ function Cart(props) {
                 </li>)
             }
 
-                <h5 className='text-xl'>Total Bill: $</h5>
+                <h5 className='text-xl'>Total Bill: ${total}</h5>
             </div>
         </>
     );

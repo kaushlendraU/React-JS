@@ -1,9 +1,9 @@
-import React, {useContext} from 'react';
-import { CartContext } from '../context/CartContext';
+import React from 'react';
+import { useCart } from '../context/CartContext';
 
 function Item(props) {
 
-    const cart = useContext(CartContext);
+    const cart = useCart()
 
     return (
         <div className='w-full flex flex-col justify-center items-center m-7'>
