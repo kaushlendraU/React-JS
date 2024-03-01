@@ -1,22 +1,39 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { removeTodo, updateTodo } from '../features/todo/todoSlice'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeTodo, toggleEdit, toggleCheck } from '../features/todo/todoSlice';
 
 function Todos() {
-    const todos = useSelector(state => state.todos)
-    const dispatch = useDispatch()
+    const todos = useSelector(state => state.todos);
+    const dispatch = useDispatch();
+    
+
+    const handleUpdateClick = (id) => {
+        dispatch(toggleEdit({ id }));
+    };
 
     return (
         <>
             <div className='text-center m-6 font-bold font-mono text-xl text-white'>Todos</div>
-            <ul className="list-none m-4">
-                {todos.map((todo) => (
+
+            <ul className="list-none m-4 flex items-center flex-col  justify-center">
+                {todos.map((todo) => !todo.isEditable && (
                     <li
-                        className="mt-4 flex justify-between items-center bg-zinc-800 px-4 py-2 rounded"
+                        className={`mt-4 flex justify-between items-center w-1/2 bg-zinc-800 px-4 py-2 rounded  ${todo.isChecked ? 'bg-zinc-600 border-2 border-b-sky-800' : ''}`}
                         key={todo.id}
                     >
-                        <div className='text-white'>{todo.text}</div>
-
+                        <div className='flex flex-row gap-3'>
+                            <input
+                                type="checkbox"
+                                name="checkbox"
+                                id="check"
+                                checked={todo.isChecked}
+                                onChange={() => {
+                                    // Dispatch an action to toggle the isChecked property
+                                    dispatch(toggleCheck({ id: todo.id }));
+                                }}
+                            />
+                            <div className={`text-white  ${todo.isChecked ? 'line-through' : ''}`}>{todo.text}</div>
+                        </div>
                         <div className='flex flex-row gap-3'>
                             <button
                                 onClick={() => dispatch(removeTodo(todo.id))}
@@ -37,17 +54,20 @@ function Todos() {
                                     />
                                 </svg>
                             </button>
-
-                            <button onClick={() => dispatch(updateTodo(todo.id))} className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md">
-                                Update
-                            </button>
+                            {!todo.isChecked && !todo.isEditable && (
+                                <button
+                                    onClick={() => handleUpdateClick(todo.id)}
+                                    className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md"
+                                >
+                                    Update
+                                </button>
+                            )}
                         </div>
-
                     </li>
                 ))}
             </ul>
         </>
-    )
+    );
 }
 
-export default Todos
+export default Todos;
